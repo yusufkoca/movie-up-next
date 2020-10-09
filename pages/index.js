@@ -1,8 +1,9 @@
 import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
 import PopularMoviesCarousel from "../components/PopularMoviesCarousel";
+import SectionTitle from "../components/SectionTitle";
 import WelcomeSection from "../components/WelcomeSection";
-import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
 
 export default function Home() {
   return (
@@ -12,8 +13,10 @@ export default function Home() {
       </Head>
       <WelcomeSection></WelcomeSection>
       <section>
-        <Typography variant="h4">PopularMovies</Typography>
-        <PopularMoviesCarousel></PopularMoviesCarousel>
+        <Container maxWidth="md">
+          <SectionTitle title="Popular Movies"></SectionTitle>
+          <PopularMoviesCarousel></PopularMoviesCarousel>
+        </Container>
       </section>
     </Layout>
   );

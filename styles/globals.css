@@ -21,3 +21,9 @@ a {
 .carousel.carousel-slider {
   padding-bottom: 60px;
 }
+
+section {
+  margin-bottom: 24px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}

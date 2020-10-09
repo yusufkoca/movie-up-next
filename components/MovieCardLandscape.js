@@ -16,8 +16,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     textAlign: "left",
-    width: "50%",
-    margin: "0 auto",
     backgroundColor: "#FAFAFA",
     boxShadow: "none",
   },

@@ -1,8 +1,10 @@
-import React from "react";
+import Link from "next/link";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
+import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 
@@ -18,6 +20,8 @@ const useStyles = makeStyles((theme) => ({
   },
   breadcrumbs: {
     flexGrow: 1,
+    padding: theme.spacing(1),
+    marginLeft: theme.spacing(4),
   },
   search: {
     position: "relative",
@@ -52,25 +56,42 @@ export default function SearchAppBar() {
 
   return (
     <AppBar position="static">
-      <Toolbar>
-        <Typography className={classes.title} variant="h6" noWrap>
-          Movie<span className={classes.titleSpan}>UP</span>
-        </Typography>
-        <div className={classes.breadcrumbs}></div>
-        <div className={classes.search}>
-          <InputBase
-            placeholder="Enter movie name here"
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            inputProps={{ "aria-label": "search" }}
-          />
-          <div className={classes.searchIcon}>
-            <SearchIcon />
+      <Container maxWidth="md">
+        <Toolbar disableGutters>
+          <Typography className={classes.title} variant="h6" noWrap>
+            Movie<span className={classes.titleSpan}>UP</span>
+          </Typography>
+          <div className={classes.breadcrumbs}>
+            <nav>
+              <Link href="/">
+                <a>
+                  <Button variant="text">Home</Button>
+                </a>
+              </Link>
+              <Link href="/favorites">
+                <a>
+                  <Button variant="text" color="secondary">
+                    Favorites
+                  </Button>
+                </a>
+              </Link>
+            </nav>
           </div>
-        </div>
-      </Toolbar>
+          <div className={classes.search}>
+            <InputBase
+              placeholder="Enter movie name here"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ "aria-label": "search" }}
+            />
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+          </div>
+        </Toolbar>
+      </Container>
     </AppBar>
   );
 }
