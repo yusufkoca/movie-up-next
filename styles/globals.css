@@ -14,3 +14,10 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.carousel .slide {
+  background: none !important;
+}
+.carousel.carousel-slider {
+  padding-bottom: 60px;
+}
