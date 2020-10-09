@@ -2,11 +2,10 @@ import Link from "next/link";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
-import SearchIcon from "@material-ui/icons/Search";
+import SearchInput from "../components/SearchInput";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -77,19 +76,7 @@ export default function SearchAppBar() {
               </Link>
             </nav>
           </div>
-          <div className={classes.search}>
-            <InputBase
-              placeholder="Enter movie name here"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-          </div>
+          <SearchInput></SearchInput>
         </Toolbar>
       </Container>
     </AppBar>

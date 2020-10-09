@@ -3,6 +3,7 @@ import Layout, { siteTitle } from "../components/layout";
 import PopularMoviesCarousel from "../components/PopularMoviesCarousel";
 import SectionTitle from "../components/SectionTitle";
 import WelcomeSection from "../components/WelcomeSection";
+import SearchBar from "../components/SearchBar";
 import Container from "@material-ui/core/Container";
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
         <title>{siteTitle}</title>
       </Head>
       <WelcomeSection></WelcomeSection>
+      <SearchBar></SearchBar>
       <section>
         <Container maxWidth="md">
           <SectionTitle title="Popular Movies"></SectionTitle>
