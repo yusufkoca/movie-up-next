@@ -13,7 +13,7 @@ export default function Home() {
         <title>{siteTitle}</title>
       </Head>
       <WelcomeSection></WelcomeSection>
-      <SearchBar></SearchBar>
+      <SearchBar onTop={true}></SearchBar>
       <section>
         <Container maxWidth="md">
           <SectionTitle title="Popular Movies"></SectionTitle>

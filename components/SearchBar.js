@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
@@ -10,7 +11,7 @@ import SearchInput from "../components/SearchInput";
 import ArrowForward from "@material-ui/icons/ArrowForward";
 
 const useStyles = makeStyles((theme) => ({
-  root: { marginTop: -90, padding: theme.spacing(2), display: "flex" },
+  root: { padding: theme.spacing(2), display: "flex" },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -27,11 +28,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchBar() {
+export default function SearchBar({ onTop = false }) {
   const classes = useStyles();
   const [year, setYear] = React.useState(null);
   const [type, setType] = React.useState(null);
-  const [name, setName] = React.useState("");
+  const [title, setTitle] = React.useState("");
 
   const handleSearch = () => {
     //TODO redirect to search page
@@ -39,7 +40,7 @@ export default function SearchBar() {
 
   return (
     <Container maxWidth="md">
-      <Paper className={classes.root}>
+      <Paper className={classes.root} style={onTop ? { marginTop: -90 } : null}>
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel>
           <Select
@@ -83,22 +84,24 @@ export default function SearchBar() {
           </Select>
         </FormControl>
         <SearchInput
-          value={name}
+          value={title}
           onChange={(event) => {
-            setName(event.target.value);
+            setTitle(event.target.value);
           }}
         ></SearchInput>
-        <Button
-          size="large"
-          variant="contained"
-          color="secondary"
-          className={classes.searchButton}
-          onClick={handleSearch}
-          onKeyDown={handleSearch}
-        >
-          Search
-          <ArrowForward></ArrowForward>
-        </Button>
+        <Link href={`/search?title=${title}`}>
+          <Button
+            size="large"
+            variant="contained"
+            color="secondary"
+            className={classes.searchButton}
+            onClick={handleSearch}
+            onKeyDown={handleSearch}
+          >
+            Search
+            <ArrowForward></ArrowForward>
+          </Button>
+        </Link>
       </Paper>
     </Container>
   );
