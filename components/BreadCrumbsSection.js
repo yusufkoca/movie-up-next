@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import { Container } from "@material-ui/core";
 import capitalize from "../utils/capitalize";
+import removeUrlParams from "../utils/removeUrlParams";
 
 export default function BreadCrumbsSection() {
   const router = useRouter();
@@ -27,7 +28,11 @@ export default function BreadCrumbsSection() {
             if (section) {
               url += section;
               if (router.asPath === url) {
-                return <Typography color="textPrimary">{section}</Typography>;
+                return (
+                  <Typography color="textPrimary">
+                    {capitalize(removeUrlParams(section))}
+                  </Typography>
+                );
               } else {
                 url += "/";
                 return (

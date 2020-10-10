@@ -1,8 +1,8 @@
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { FavoritesProvider } from "../providers/FavoritesProvider";
+import Loading from "../components/Loading";
 import "../styles/globals.css";
-import { useEffect } from "react";
 
 const muiTheme = createMuiTheme({
   palette: {
@@ -52,6 +52,7 @@ function MyApp({ Component, pageProps }) {
     <FavoritesProvider>
       <ThemeProvider theme={muiTheme}>
         <CssBaseline />
+        <Loading></Loading>
         <Component {...pageProps} />
       </ThemeProvider>
     </FavoritesProvider>
