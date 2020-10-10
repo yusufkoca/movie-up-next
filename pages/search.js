@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Pagination from "@material-ui/lab/Pagination";
 import SectionTitle from "../components/SectionTitle";
 import MoviesGrid from "../components/MoviesGrid";
+import BreadCrumbsSection from "../components/BreadCrumbsSection";
 
 export default function SearchResults({ totalResults, movies, pageCount }) {
   const router = useRouter();
@@ -18,7 +19,7 @@ export default function SearchResults({ totalResults, movies, pageCount }) {
       <Head>
         <title>Search Results</title>
       </Head>
-      <section>breadcrumbs</section>
+      <BreadCrumbsSection></BreadCrumbsSection>
       <SearchBar></SearchBar>
       <section>
         <Container maxWidth="md">

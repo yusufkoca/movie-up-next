@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchBar({ onTop = false }) {
   const classes = useStyles();
+  const router = useRouter();
   const [year, setYear] = React.useState(null);
   const [type, setType] = React.useState(null);
   const [title, setTitle] = React.useState("");
@@ -60,6 +62,11 @@ export default function SearchBar({ onTop = false }) {
           value={title}
           onChange={(event) => {
             setTitle(event.target.value);
+          }}
+          onKeyPress={(ev) => {
+            if (ev.key === "Enter") {
+              router.push(`/search?title=${title}&year=${year}&type=${type}`);
+            }
           }}
         ></SearchInput>
         <Link href={`/search?title=${title}&year=${year}&type=${type}`}>

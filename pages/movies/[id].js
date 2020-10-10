@@ -4,6 +4,7 @@ import Layout from "../../components/Layout";
 import MovieDetail from "../../components/MovieDetail";
 import { getMovieWithId } from "../../lib/movie";
 import Container from "@material-ui/core/Container";
+import BreadCrumbsSection from "../../components/BreadCrumbsSection";
 
 export default function Movie({ movieData }) {
   return (
@@ -11,8 +12,9 @@ export default function Movie({ movieData }) {
       <Head>
         <title>{movieData.Title}</title>
       </Head>
+      <BreadCrumbsSection></BreadCrumbsSection>
       <section>
-        <Container maxWidth="lg">
+        <Container maxWidth="md">
           <MovieDetail movie={movieData}></MovieDetail>
         </Container>
       </section>

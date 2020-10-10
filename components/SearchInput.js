@@ -1,4 +1,3 @@
-import InputBase from "@material-ui/core/InputBase";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchInput({ onChange, value }) {
+export default function SearchInput({ onChange, value, onKeyPress }) {
   const classes = useStyles();
 
   return (
@@ -30,6 +29,7 @@ export default function SearchInput({ onChange, value }) {
       onChange={onChange}
       value={value}
       label="Keyword"
+      onKeyPress={onKeyPress}
     />
   );
 }
