@@ -15,7 +15,7 @@ export default function Home() {
       <WelcomeSection></WelcomeSection>
       <SearchBar onTop={true}></SearchBar>
       <section>
-        <Container maxWidth="md">
+        <Container maxWidth="lg">
           <SectionTitle title="Popular Movies"></SectionTitle>
           <PopularMoviesCarousel></PopularMoviesCarousel>
         </Container>

@@ -14,7 +14,7 @@ export default function Movie({ movieData }) {
       </Head>
       <BreadCrumbsSection></BreadCrumbsSection>
       <section>
-        <Container maxWidth="md">
+        <Container maxWidth="lg">
           <MovieDetail movie={movieData}></MovieDetail>
         </Container>
       </section>

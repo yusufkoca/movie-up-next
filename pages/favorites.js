@@ -21,7 +21,7 @@ export default function Favorites() {
       </Head>
       <section>breadcrumbs</section>
       <section>
-        <Container maxWidth="md">
+        <Container maxWidth="lg">
           <SectionTitle title="Favorites"></SectionTitle>
           <MoviesGrid
             movies={[...movies.slice((page - 1) * 10, page * 10)]}

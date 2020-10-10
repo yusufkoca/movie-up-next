@@ -25,14 +25,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const menuItems = [
+  {
+    href: "/",
+    label: "Home",
+  },
+  {
+    href: "/favorites",
+    label: "Favorites",
+  },
+];
+
 export default function SearchAppBar() {
   const classes = useStyles();
   const router = useRouter();
   const [title, setTitle] = React.useState("");
-  console.log(router);
+
+  const urlSections = router.asPath.split("/");
+  console.log(urlSections);
   return (
     <AppBar position="static">
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <Toolbar disableGutters>
           <Link href="/">
             <a>
@@ -43,18 +56,22 @@ export default function SearchAppBar() {
           </Link>
           <div className={classes.breadcrumbs}>
             <nav>
-              <Link href="/">
-                <a>
-                  <Button variant="text">Home</Button>
-                </a>
-              </Link>
-              <Link href="/favorites">
-                <a>
-                  <Button variant="text" color="secondary">
-                    Favorites
-                  </Button>
-                </a>
-              </Link>
+              {menuItems.map((menuItem) => (
+                <Link href={menuItem.href}>
+                  <a>
+                    <Button
+                      variant="text"
+                      color={
+                        menuItem.href === "/" + urlSections[1]
+                          ? "secondary"
+                          : "textPrimary"
+                      }
+                    >
+                      {menuItem.label}
+                    </Button>
+                  </a>
+                </Link>
+              ))}
             </nav>
           </div>
           <SearchInput

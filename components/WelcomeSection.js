@@ -28,7 +28,7 @@ export default function WelcomeSection() {
   const classes = useStyles();
   return (
     <section className={classes.mainSection}>
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <div style={{ width: "50%", marginTop: "15vh" }}>
           <Typography className={classes.title} variant="h4" noWrap>
             Welcome to <br></br>

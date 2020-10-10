@@ -32,7 +32,7 @@ export default function SearchBar({ onTop = false }) {
   const [title, setTitle] = React.useState("");
 
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="lg">
       <Paper className={classes.root} style={onTop ? { marginTop: -90 } : null}>
         <TextField
           id="year-input"

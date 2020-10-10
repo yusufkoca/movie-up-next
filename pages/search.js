@@ -22,7 +22,7 @@ export default function SearchResults({ totalResults, movies, pageCount }) {
       <BreadCrumbsSection></BreadCrumbsSection>
       <SearchBar></SearchBar>
       <section>
-        <Container maxWidth="md">
+        <Container maxWidth="lg">
           <SectionTitle
             title="Search results: "
             subtitle={title}
