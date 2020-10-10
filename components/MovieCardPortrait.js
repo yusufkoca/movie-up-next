@@ -28,8 +28,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MediaCard({
-  movie,
+export default function MovieCardPortrait({
+  movie = { Poster: null, Title: "", Genre: "", Plot: "" },
   isFavorite,
   onFavButtonClick,
   onUnFavButtonClick,

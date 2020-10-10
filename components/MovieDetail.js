@@ -43,7 +43,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MovieDetail({ movie = { Poster: null, Title: "" } }) {
+export default function MovieDetail({
+  movie = { Poster: null, Title: "", Genre: "", Plot: "" },
+}) {
   const classes = useStyles();
   const {
     state: { imdbIDs },

@@ -4,25 +4,14 @@ import Layout from "../components/Layout";
 import { getSearchResults } from "../lib/search";
 import SearchBar from "../components/SearchBar";
 import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Pagination from "@material-ui/lab/Pagination";
-import MovieCardPortrait from "../components/MovieCardPortrait";
-import { useFavorites } from "../providers/FavoritesProvider";
+import SectionTitle from "../components/SectionTitle";
+import MoviesGrid from "../components/MoviesGrid";
 
-export default function SearchResults({
-  movies,
-  totalResults,
-  movieDetails,
-  pageCount,
-}) {
+export default function SearchResults({ totalResults, movies, pageCount }) {
   const router = useRouter();
   const { title, year, type } = router.query;
-  const {
-    state: { imdbIDs },
-    addToFavorites,
-    removeFromFavorites,
-  } = useFavorites();
 
   return (
     <Layout>
@@ -33,26 +22,14 @@ export default function SearchResults({
       <SearchBar></SearchBar>
       <section>
         <Container maxWidth="md">
+          <SectionTitle
+            title="Search results: "
+            subtitle={title}
+          ></SectionTitle>
           <Typography variant="body1">
             10 results shown out of {totalResults} results
           </Typography>
-          <Grid container spacing="2">
-            {movieDetails &&
-              movieDetails.map((movie) => (
-                <Grid item xs={12} md={4} key={movie.imdbID}>
-                  <MovieCardPortrait
-                    movie={movie}
-                    isFavorite={imdbIDs.includes(movie.imdbID)}
-                    onFavButtonClick={(event, movie) => {
-                      addToFavorites(movie);
-                    }}
-                    onUnFavButtonClick={(event, id) => {
-                      removeFromFavorites(id);
-                    }}
-                  ></MovieCardPortrait>
-                </Grid>
-              ))}
-          </Grid>
+          <MoviesGrid movies={movies}></MoviesGrid>
           <Pagination
             count={pageCount}
             shape="rounded"
@@ -81,9 +58,8 @@ export async function getServerSideProps({ query }) {
   if (!error) {
     return {
       props: {
-        movies: searchResults.Search,
         totalResults: searchResults.totalResults,
-        movieDetails: movieDetails,
+        movies: movieDetails,
         pageCount: Math.ceil(searchResults.totalResults / 10),
       },
     };
