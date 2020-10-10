@@ -40,9 +40,8 @@ export default function SearchAppBar() {
   const classes = useStyles();
   const router = useRouter();
   const [title, setTitle] = React.useState("");
-
   const urlSections = router.asPath.split("/");
-  console.log(urlSections);
+
   return (
     <AppBar position="static">
       <Container maxWidth="lg">
@@ -80,7 +79,6 @@ export default function SearchAppBar() {
               setTitle(event.target.value);
             }}
             onKeyPress={(ev) => {
-              console.log(`Pressed keyCode ${ev.key}`);
               if (ev.key === "Enter") {
                 router.push(`/search?title=${title}&page=1`);
               }

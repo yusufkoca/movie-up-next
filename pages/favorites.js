@@ -4,6 +4,7 @@ import Container from "@material-ui/core/Container";
 import Pagination from "@material-ui/lab/Pagination";
 import SectionTitle from "../components/SectionTitle";
 import MoviesGrid from "../components/MoviesGrid";
+import BreadCrumbsSection from "../components/BreadCrumbsSection";
 import { useFavorites } from "../providers/FavoritesProvider";
 
 export default function Favorites() {
@@ -19,7 +20,7 @@ export default function Favorites() {
       <Head>
         <title>Favorites</title>
       </Head>
-      <section>breadcrumbs</section>
+      <BreadCrumbsSection></BreadCrumbsSection>
       <section>
         <Container maxWidth="lg">
           <SectionTitle title="Favorites"></SectionTitle>

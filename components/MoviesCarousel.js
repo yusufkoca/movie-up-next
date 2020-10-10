@@ -1,9 +1,10 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import MovieCardLandscape from "./MovieCardLandscape";
 import { IconButton } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import { useFavorites } from "../providers/FavoritesProvider";
 
 const arrowStyles = {
   position: "absolute",
@@ -25,7 +26,13 @@ const indicatorStyles = {
   margin: "0 8px",
 };
 
-export default function PopularMoviesCarousel() {
+export default function PopularMoviesCarousel({ movies }) {
+  const {
+    state: { imdbIDs },
+    addToFavorites,
+    removeFromFavorites,
+  } = useFavorites();
+
   return (
     <Carousel
       showStatus={false}
@@ -78,9 +85,18 @@ export default function PopularMoviesCarousel() {
         );
       }}
     >
-      <MovieCardLandscape></MovieCardLandscape>
-      <MovieCardLandscape></MovieCardLandscape>
-      <MovieCardLandscape></MovieCardLandscape>
+      {movies.map((movie) => (
+        <MovieCardLandscape
+          movie={movie}
+          isFavorite={imdbIDs.includes(movie.imdbID)}
+          onFavButtonClick={(event, movie) => {
+            addToFavorites(movie);
+          }}
+          onUnFavButtonClick={(event, id) => {
+            removeFromFavorites(id);
+          }}
+        ></MovieCardLandscape>
+      ))}
     </Carousel>
   );
 }

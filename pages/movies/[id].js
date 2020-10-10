@@ -1,10 +1,10 @@
-import Link from "next/link";
 import Head from "next/head";
 import Layout from "../../components/Layout";
 import MovieDetail from "../../components/MovieDetail";
 import { getMovieWithId } from "../../lib/movie";
 import Container from "@material-ui/core/Container";
 import BreadCrumbsSection from "../../components/BreadCrumbsSection";
+import RelatedMoviesSection from "../../components/RelatedMoviesSection";
 
 export default function Movie({ movieData }) {
   return (
@@ -18,6 +18,7 @@ export default function Movie({ movieData }) {
           <MovieDetail movie={movieData}></MovieDetail>
         </Container>
       </section>
+      <RelatedMoviesSection></RelatedMoviesSection>
     </Layout>
   );
 }

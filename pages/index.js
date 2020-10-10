@@ -1,12 +1,10 @@
 import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
-import PopularMoviesCarousel from "../components/PopularMoviesCarousel";
-import SectionTitle from "../components/SectionTitle";
 import WelcomeSection from "../components/WelcomeSection";
 import SearchBar from "../components/SearchBar";
-import Container from "@material-ui/core/Container";
+import PopularMoviesSection from "../components/PopularMoviesSection";
 
-export default function Home() {
+export default function Home({ popularMovies }) {
   return (
     <Layout>
       <Head>
@@ -14,12 +12,7 @@ export default function Home() {
       </Head>
       <WelcomeSection></WelcomeSection>
       <SearchBar onTop={true}></SearchBar>
-      <section>
-        <Container maxWidth="lg">
-          <SectionTitle title="Popular Movies"></SectionTitle>
-          <PopularMoviesCarousel></PopularMoviesCarousel>
-        </Container>
-      </section>
+      <PopularMoviesSection></PopularMoviesSection>
     </Layout>
   );
 }
