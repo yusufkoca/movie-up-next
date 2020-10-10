@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
-import Layout from "../components/Layout";
+import PageLayout from "../components/PageLayout";
 import { getSearchResults } from "../lib/search";
 import SearchBar from "../components/SearchBar";
 import Container from "@material-ui/core/Container";
@@ -15,7 +15,7 @@ export default function SearchResults({ totalResults, movies, pageCount }) {
   const { title, year, type } = router.query;
 
   return (
-    <Layout>
+    <PageLayout>
       <Head>
         <title>Search Results</title>
       </Head>
@@ -43,7 +43,7 @@ export default function SearchResults({ totalResults, movies, pageCount }) {
           />
         </Container>
       </section>
-    </Layout>
+    </PageLayout>
   );
 }
 
