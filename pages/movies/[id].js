@@ -1,33 +1,26 @@
 import Link from "next/link";
 import Head from "next/head";
 import Layout from "../../components/Layout";
-import { getMovieWithId, getSearchedMovieIds } from "../../lib/movie";
+import MovieDetail from "../../components/MovieDetail";
+import { getMovieWithId } from "../../lib/movie";
+import Container from "@material-ui/core/Container";
 
 export default function Movie({ movieData }) {
   return (
     <Layout>
       <Head>
-        <title>Browser Tab Title</title>
+        <title>{movieData.Title}</title>
       </Head>
-      <h1>{movieData.Title}</h1>
-      <h2>
-        <Link href="/">
-          <a>Back to home</a>
-        </Link>
-      </h2>
+      <section>
+        <Container maxWidth="lg">
+          <MovieDetail movie={movieData}></MovieDetail>
+        </Container>
+      </section>
     </Layout>
   );
 }
 
-export async function getStaticPaths() {
-  const paths = await getSearchedMovieIds("godfather");
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const movieData = await getMovieWithId(params.id);
   return {
     props: {

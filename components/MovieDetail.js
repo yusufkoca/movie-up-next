@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -7,6 +7,8 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import NotFavoriteIcon from "@material-ui/icons/FavoriteBorder";
+import { useFavorites } from "../providers/FavoritesProvider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cover: {
     width: "25%",
+    height: "50vh",
     margin: theme.spacing(2),
     borderRadius: 20,
   },
@@ -40,11 +43,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MovieCardLandscape({
-  movie = { Poster: null, Title: "", Genre: "", Plot: "" },
-}) {
+export default function MovieDetail({ movie = { Poster: null, Title: "" } }) {
   const classes = useStyles();
+  const {
+    state: { imdbIDs },
+    addToFavorites,
+    removeFromFavorites,
+  } = useFavorites();
   const genres = movie.Genre.split(", ");
+  const isFavorite = imdbIDs.includes(movie.imdbID);
 
   return (
     <Card className={classes.root}>
@@ -57,19 +64,33 @@ export default function MovieCardLandscape({
         <CardHeader
           avatar={<img src="/images/imdb-icon.png" alt="imdb icon"></img>}
           action={
-            <>
-              {genres &&
-                genres.map((genre, index) => (
-                  <Button
-                    key={index}
-                    variant="contained"
-                    color="secondary"
-                    className={classes.button}
-                  >
-                    {genre}
-                  </Button>
-                ))}
-            </>
+            isFavorite ? (
+              <Button
+                variant="contained"
+                color="secondary"
+                style={{ color: "#fff" }}
+                className={classes.button}
+                onClick={() => {
+                  removeFromFavorites(movie.imdbID);
+                }}
+              >
+                <FavoriteIcon></FavoriteIcon>
+                Remove from favorites
+              </Button>
+            ) : (
+              <Button
+                variant="contained"
+                color="secondary"
+                style={{ color: "#fff" }}
+                className={classes.button}
+                onClick={() => {
+                  addToFavorites(movie);
+                }}
+              >
+                <NotFavoriteIcon></NotFavoriteIcon>
+                Add to favorites
+              </Button>
+            )
           }
           title={movie.imdbRating}
         />
@@ -78,23 +99,21 @@ export default function MovieCardLandscape({
             {movie.Title}
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
-            {movie.Plot.substring(0, 120)}...
+            {movie.Plot}
           </Typography>
         </CardContent>
         <div className={classes.controls}>
-          <Button
-            variant="contained"
-            color="secondary"
-            style={{ color: "#fff" }}
-            className={classes.button}
-          >
-            <FavoriteIcon></FavoriteIcon>
-            Add to favorites
-          </Button>
-
-          <Button variant="text" color="secondary" className={classes.button}>
-            View Details
-          </Button>
+          {genres &&
+            genres.map((genre, index) => (
+              <Button
+                key={index}
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+              >
+                {genre}
+              </Button>
+            ))}
         </div>
       </div>
     </Card>

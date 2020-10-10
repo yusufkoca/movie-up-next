@@ -7,6 +7,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 import SearchInput from "../components/SearchInput";
 import ArrowForward from "@material-ui/icons/ArrowForward";
 
@@ -20,12 +21,6 @@ const useStyles = makeStyles((theme) => ({
     color: "#fff",
     margin: theme.spacing(1),
   },
-  selectInput: {
-    backgroundColor: "#F3F3F3",
-  },
-  selectIcon: {
-    color: theme.palette.secondary.main,
-  },
 }));
 
 export default function SearchBar({ onTop = false }) {
@@ -34,34 +29,16 @@ export default function SearchBar({ onTop = false }) {
   const [type, setType] = React.useState(null);
   const [title, setTitle] = React.useState("");
 
-  const handleSearch = () => {
-    //TODO redirect to search page
-  };
-
   return (
     <Container maxWidth="md">
       <Paper className={classes.root} style={onTop ? { marginTop: -90 } : null}>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel>
-          <Select
-            labelId="year-select-label"
-            id="year-select"
-            value={year}
-            onChange={(event) => setYear(event.target.value)}
-            label="Year"
-            classes={{
-              root: classes.selectInput,
-              icon: classes.selectIcon,
-            }}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
-        </FormControl>
+        <TextField
+          id="year-input"
+          variant="outlined"
+          onChange={(event) => setYear(event.target.value)}
+          value={year}
+          label="Year"
+        />
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel id="demo-simple-select-outlined-label">Type</InputLabel>
           <Select
@@ -70,17 +47,13 @@ export default function SearchBar({ onTop = false }) {
             value={type}
             onChange={(event) => setType(event.target.value)}
             label="Type"
-            classes={{
-              root: classes.selectInput,
-              icon: classes.selectIcon,
-            }}
           >
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={"movie"}>Movie</MenuItem>
+            <MenuItem value={"series"}>Series</MenuItem>
+            <MenuItem value={"episode"}>Episode</MenuItem>
           </Select>
         </FormControl>
         <SearchInput
@@ -89,14 +62,12 @@ export default function SearchBar({ onTop = false }) {
             setTitle(event.target.value);
           }}
         ></SearchInput>
-        <Link href={`/search?title=${title}`}>
+        <Link href={`/search?title=${title}&year=${year}&type=${type}`}>
           <Button
             size="large"
             variant="contained"
             color="secondary"
             className={classes.searchButton}
-            onClick={handleSearch}
-            onKeyDown={handleSearch}
           >
             Search
             <ArrowForward></ArrowForward>

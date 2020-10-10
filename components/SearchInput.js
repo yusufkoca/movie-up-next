@@ -5,10 +5,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: "#F3F3F3",
-    margin: theme.spacing(1),
-  },
   search: {
     flexGrow: 1,
   },
@@ -23,7 +19,6 @@ export default function SearchInput({ onChange, value }) {
       id="search-input"
       placeholder="Enter movie name here"
       InputProps={{
-        classes,
         disableUnderline: true,
         endAdornment: (
           <InputAdornment position="end">
@@ -34,6 +29,7 @@ export default function SearchInput({ onChange, value }) {
       variant="outlined"
       onChange={onChange}
       value={value}
+      label="Keyword"
     />
   );
 }

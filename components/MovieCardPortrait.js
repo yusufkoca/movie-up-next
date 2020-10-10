@@ -1,4 +1,4 @@
-import React from "react";
+import Link from "next/link";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -7,7 +7,8 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import FavoriteIcon from "@material-ui/icons/FavoriteBorderOutlined";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import NotFavoriteIcon from "@material-ui/icons/FavoriteBorderOutlined";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -27,9 +28,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MediaCard({ movie }) {
+export default function MediaCard({
+  movie,
+  isFavorite,
+  onFavButtonClick,
+  onUnFavButtonClick,
+}) {
   const classes = useStyles();
-
+  const genres = movie.Genre.split(", ");
   return (
     <Card className={classes.root}>
       <CardMedia
@@ -38,37 +44,55 @@ export default function MediaCard({ movie }) {
         title={movie.Title + " Movie Poster"}
       >
         <div className={classes.actionButtonsContainer}>
-          <Button
-            variant="contained"
-            color="secondary"
-            className={classes.button}
-          >
-            Action
-          </Button>
-          <IconButton
-            color="secondary"
-            variant="contained"
-            className={classes.favButton}
-          >
-            <FavoriteIcon></FavoriteIcon>
-          </IconButton>
+          {genres.length > 0 && (
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+            >
+              {genres[0]}
+            </Button>
+          )}
+          {isFavorite ? (
+            <IconButton
+              color="secondary"
+              variant="contained"
+              className={classes.favButton}
+              onClick={(event) => onUnFavButtonClick(event, movie.imdbID)}
+            >
+              <FavoriteIcon></FavoriteIcon>
+            </IconButton>
+          ) : (
+            <IconButton
+              color="secondary"
+              variant="contained"
+              className={classes.favButton}
+              onClick={(event) => onFavButtonClick(event, movie)}
+            >
+              <NotFavoriteIcon></NotFavoriteIcon>
+            </IconButton>
+          )}
         </div>
       </CardMedia>
-      <CardHeader
-        avatar={<img src="/images/imdb-icon.png" alt="imdb icon"></img>}
-        title={movie.imdbRating}
-      />
-      <CardContent className={classes.content}>
-        <Typography component="h6" variant="h6" color="secondary">
-          {movie.Year}
-        </Typography>
-        <Typography component="h5" variant="h5">
-          {movie.Title}
-        </Typography>
-        <Typography variant="subtitle1" color="textSecondary">
-          {movie.Plot}
-        </Typography>
-      </CardContent>
+      <Link href={"/movies/" + movie.imdbID}>
+        <a>
+          <CardHeader
+            avatar={<img src="/images/imdb-icon.png" alt="imdb icon"></img>}
+            title={movie.imdbRating}
+          />
+          <CardContent className={classes.content}>
+            <Typography component="h6" variant="h6" color="secondary">
+              {movie.Year}
+            </Typography>
+            <Typography component="h5" variant="h5">
+              {movie.Title}
+            </Typography>
+            <Typography variant="subtitle1" color="textSecondary">
+              {movie.Plot.substring(0, 120)}...
+            </Typography>
+          </CardContent>
+        </a>
+      </Link>
     </Card>
   );
 }
