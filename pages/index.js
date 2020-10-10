@@ -1,18 +1,18 @@
 import Head from "next/head";
-import Layout, { siteTitle } from "../components/layout";
+import PageLayout, { siteTitle } from "../components/PageLayout";
 import WelcomeSection from "../components/WelcomeSection";
 import SearchBar from "../components/SearchBar";
 import PopularMoviesSection from "../components/PopularMoviesSection";
 
-export default function Home({ popularMovies }) {
+export default function Home() {
   return (
-    <Layout>
+    <PageLayout>
       <Head>
         <title>{siteTitle}</title>
       </Head>
       <WelcomeSection></WelcomeSection>
       <SearchBar onTop={true}></SearchBar>
       <PopularMoviesSection></PopularMoviesSection>
-    </Layout>
+    </PageLayout>
   );
 }

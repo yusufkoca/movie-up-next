@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Layout from "../../components/Layout";
+import PageLayout from "../../components/PageLayout";
 import MovieDetail from "../../components/MovieDetail";
 import { getMovieWithId } from "../../lib/movie";
 import Container from "@material-ui/core/Container";
@@ -8,7 +8,7 @@ import RelatedMoviesSection from "../../components/RelatedMoviesSection";
 
 export default function Movie({ movieData }) {
   return (
-    <Layout>
+    <PageLayout>
       <Head>
         <title>{movieData.Title}</title>
       </Head>
@@ -19,7 +19,7 @@ export default function Movie({ movieData }) {
         </Container>
       </section>
       <RelatedMoviesSection></RelatedMoviesSection>
-    </Layout>
+    </PageLayout>
   );
 }
 

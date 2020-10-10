@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Layout from "../components/Layout";
+import PageLayout from "../components/PageLayout";
 import Container from "@material-ui/core/Container";
 import Pagination from "@material-ui/lab/Pagination";
 import SectionTitle from "../components/SectionTitle";
@@ -16,7 +16,7 @@ export default function Favorites() {
   const pageCount = Math.ceil(movies.length / 10);
 
   return (
-    <Layout>
+    <PageLayout>
       <Head>
         <title>Favorites</title>
       </Head>
@@ -37,6 +37,6 @@ export default function Favorites() {
           />
         </Container>
       </section>
-    </Layout>
+    </PageLayout>
   );
 }
