@@ -55,15 +55,15 @@ export default function SearchAppBar() {
           </Link>
           <div className={classes.breadcrumbs}>
             <nav>
-              {menuItems.map((menuItem) => (
-                <Link href={menuItem.href}>
+              {menuItems.map((menuItem, index) => (
+                <Link href={menuItem.href} key={index}>
                   <a>
                     <Button
                       variant="text"
                       color={
                         menuItem.href === "/" + urlSections[1]
                           ? "secondary"
-                          : "textPrimary"
+                          : "inherit"
                       }
                     >
                       {menuItem.label}

@@ -15,10 +15,8 @@ export default function SearchInput({ onChange, value, onKeyPress }) {
   return (
     <TextField
       className={classes.search}
-      id="search-input"
       placeholder="Enter movie name here"
       InputProps={{
-        disableUnderline: true,
         endAdornment: (
           <InputAdornment position="end">
             <SearchIcon />

@@ -27,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
 export default function SearchBar({ onTop = false }) {
   const classes = useStyles();
   const router = useRouter();
-  const [year, setYear] = React.useState(null);
-  const [type, setType] = React.useState(null);
+  const [year, setYear] = React.useState("");
+  const [type, setType] = React.useState("");
   const [title, setTitle] = React.useState("");
 
   return (

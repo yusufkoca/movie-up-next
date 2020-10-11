@@ -85,8 +85,9 @@ export default function PopularMoviesCarousel({ movies }) {
         );
       }}
     >
-      {movies.map((movie) => (
+      {movies.map((movie, index) => (
         <MovieCardLandscape
+          key={index}
           movie={movie}
           isFavorite={imdbIDs.includes(movie.imdbID)}
           onFavButtonClick={(event, movie) => {
