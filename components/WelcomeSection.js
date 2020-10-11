@@ -11,6 +11,15 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     color: "#fff",
     height: "70vh",
+    [theme.breakpoints.down("sm")]: {
+      height: "40vh",
+    },
+  },
+  content: {
+    [theme.breakpoints.up("md")]: {
+      width: "50%",
+      marginTop: "15vh",
+    },
   },
   title: {
     fontWeight: 500,
@@ -19,9 +28,6 @@ const useStyles = makeStyles((theme) => ({
   bold: {
     fontWeight: 800,
   },
-  headerParagraph: {
-    //width: "50%",
-  },
 }));
 
 export default function WelcomeSection() {
@@ -29,12 +35,12 @@ export default function WelcomeSection() {
   return (
     <section className={classes.mainSection}>
       <Container maxWidth="lg">
-        <div style={{ width: "50%", marginTop: "15vh" }}>
+        <div className={classes.content}>
           <Typography className={classes.title} variant="h4" noWrap>
             Welcome to <br></br>
             <span className={classes.bold}>MovieUP.</span>
           </Typography>
-          <Typography variant="body1" className={classes.headerParagraph}>
+          <Typography variant="body1">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris

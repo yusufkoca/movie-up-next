@@ -10,7 +10,7 @@ export default function MoviesGrid({ movies }) {
   } = useFavorites();
 
   return (
-    <Grid container spacing="2" style={{ marginTop: 8, marginBottom: 8 }}>
+    <Grid container spacing={2} style={{ marginTop: 8, marginBottom: 8 }}>
       {movies &&
         movies.map((movie) => (
           <Grid item xs={12} md={4} key={movie.imdbID}>

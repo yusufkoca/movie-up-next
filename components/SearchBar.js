@@ -13,7 +13,13 @@ import SearchInput from "../components/SearchInput";
 import ArrowForward from "@material-ui/icons/ArrowForward";
 
 const useStyles = makeStyles((theme) => ({
-  root: { padding: theme.spacing(2), display: "flex" },
+  root: {
+    padding: theme.spacing(2),
+    display: "flex",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
+  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,

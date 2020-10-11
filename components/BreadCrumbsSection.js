@@ -24,19 +24,19 @@ export default function BreadCrumbsSection() {
               <Typography>Home</Typography>
             </a>
           </Link>
-          {urlSections.map((section) => {
+          {urlSections.map((section, index) => {
             if (section) {
               url += section;
               if (router.asPath === url) {
                 return (
-                  <Typography color="textPrimary">
+                  <Typography color="textPrimary" key={index}>
                     {capitalize(removeUrlParams(section))}
                   </Typography>
                 );
               } else {
                 url += "/";
                 return (
-                  <Link href={url}>
+                  <Link href={url} key={index}>
                     <a>
                       <Typography>{capitalize(section)}</Typography>
                     </a>

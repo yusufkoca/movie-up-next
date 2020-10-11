@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(1),
     marginLeft: theme.spacing(4),
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: 0,
+    },
   },
 }));
 

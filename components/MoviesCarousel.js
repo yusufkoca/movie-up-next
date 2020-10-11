@@ -1,10 +1,18 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import MovieCardLandscape from "./MovieCardLandscape";
+import MovieCardPortrait from "./MovieCardPortrait";
 import { IconButton } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { useFavorites } from "../providers/FavoritesProvider";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+
+const MovieDisplayComponents = {
+  portrait: MovieCardPortrait,
+  landscape: MovieCardLandscape,
+};
 
 const arrowStyles = {
   position: "absolute",
@@ -26,7 +34,11 @@ const indicatorStyles = {
   margin: "0 8px",
 };
 
-export default function PopularMoviesCarousel({ movies }) {
+export default function MoviesCarousel({ movies }) {
+  const theme = useTheme();
+  const isMobileScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const MovieDisplayComponent =
+    MovieDisplayComponents[isMobileScreen ? "portrait" : "landscape"];
   const {
     state: { imdbIDs },
     addToFavorites,
@@ -86,7 +98,7 @@ export default function PopularMoviesCarousel({ movies }) {
       }}
     >
       {movies.map((movie, index) => (
-        <MovieCardLandscape
+        <MovieDisplayComponent
           key={index}
           movie={movie}
           isFavorite={imdbIDs.includes(movie.imdbID)}
@@ -96,7 +108,7 @@ export default function PopularMoviesCarousel({ movies }) {
           onUnFavButtonClick={(event, id) => {
             removeFromFavorites(id);
           }}
-        ></MovieCardLandscape>
+        ></MovieDisplayComponent>
       ))}
     </Carousel>
   );

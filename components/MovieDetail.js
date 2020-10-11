@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     backgroundColor: "#FAFAFA",
     boxShadow: "none",
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column",
+    },
   },
   details: {
     display: "flex",
@@ -26,10 +29,18 @@ const useStyles = makeStyles((theme) => ({
     flex: "1 0 auto",
   },
   cover: {
-    width: "25%",
     height: "50vh",
     margin: theme.spacing(2),
     borderRadius: 20,
+    [theme.breakpoints.down("xs")]: {
+      height: "30vh",
+    },
+    [theme.breakpoints.up("md")]: {
+      width: "25%",
+    },
+    [theme.breakpoints.up("sm")]: {
+      width: "50%",
+    },
   },
   controls: {
     display: "flex",
