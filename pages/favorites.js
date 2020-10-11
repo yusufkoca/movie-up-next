@@ -27,14 +27,17 @@ export default function Favorites() {
           <MoviesGrid
             movies={[...movies.slice((page - 1) * 10, page * 10)]}
           ></MoviesGrid>
-          <Pagination
-            count={pageCount}
-            shape="rounded"
-            variant="outlined"
-            onChange={(event, value) => {
-              setPage(value);
-            }}
-          />
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Pagination
+              count={pageCount}
+              shape="rounded"
+              onChange={(event, value) => {
+                setPage(value);
+              }}
+              color="secondary"
+              size="large"
+            />
+          </div>
         </Container>
       </section>
     </PageLayout>

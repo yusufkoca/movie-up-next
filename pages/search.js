@@ -31,16 +31,19 @@ export default function SearchResults({ totalResults, movies, pageCount }) {
             10 results shown out of {totalResults} results
           </Typography>
           <MoviesGrid movies={movies}></MoviesGrid>
-          <Pagination
-            count={pageCount}
-            shape="rounded"
-            variant="outlined"
-            onChange={(event, value) => {
-              router.push(
-                `/search?title=${title}&year=${year}&type=${type}&page=${value}`
-              );
-            }}
-          />
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Pagination
+              count={pageCount}
+              shape="rounded"
+              onChange={(event, value) => {
+                router.push(
+                  `/search?title=${title}&year=${year}&type=${type}&page=${value}`
+                );
+              }}
+              color="secondary"
+              size="large"
+            />
+          </div>
         </Container>
       </section>
     </PageLayout>

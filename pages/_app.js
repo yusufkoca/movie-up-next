@@ -44,6 +44,17 @@ const muiTheme = createMuiTheme({
         color: "#f5c518",
       },
     },
+    MuiPaginationItem: {
+      root: {
+        color: "#be9500",
+        backgroundColor: "rgba(245, 197, 24, 0.15)",
+        "&$textSecondary": {
+          "&$selected": {
+            color: "#fff",
+          },
+        },
+      },
+    },
   },
 });
 
