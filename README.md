@@ -1,3 +1,13 @@
+MovieUP is a simple React App that provides users movie search capabilities from IMDB via OMDB API. It also has a feature to favorite movies so that visiting next time, there will be users' favorite movies present.
+
+Demo Link -> https://movie-up-next.vercel.app/
+
+## JS Stack
+
+- React
+- Next.js
+- Material-UI
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
